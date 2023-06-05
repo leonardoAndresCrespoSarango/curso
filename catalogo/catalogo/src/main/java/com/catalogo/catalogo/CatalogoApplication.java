@@ -13,7 +13,7 @@ public class CatalogoApplication {
 		return "HOLA FUNCIONA O NO FUNCIONA";
 	}
 	public static void main(String[] args) {
-		SpringApplication.run(CatalogoApplication.class, args);
+		SpringApplication.run(CatalogoApplication.class,args);
 	}
 
 }
