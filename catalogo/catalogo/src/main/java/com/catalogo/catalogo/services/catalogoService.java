@@ -43,4 +43,15 @@ public class catalogoService {
         }
         return catalogoExistente;
     }
+
+    public void eliminarCatalogo(int id) {
+        catalogo catalogoExistente = entityManager.find(catalogo.class, id);
+        if (catalogoExistente != null) {
+            entityManager.remove(catalogoExistente);
+        }
+    }
+
+    public catalogo buscarPorId(int id) {
+        return entityManager.find(catalogo.class, id);
+    }
 }
