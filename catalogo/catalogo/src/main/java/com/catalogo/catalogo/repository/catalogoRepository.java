@@ -8,5 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface catalogoRepository {
     List<catalogo> findByUsuarioId(int registroId);
+    ////////
+    //holaaaaaaaaa
 
 }
