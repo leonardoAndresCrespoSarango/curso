@@ -1,10 +1,10 @@
-package com.incripcionUsuarios.InscripcionPagos;
+package com.recursos.recursos;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class InscripcionPagosApplicationTests {
+class RecursosApplicationTests {
 
 	@Test
 	void contextLoads() {

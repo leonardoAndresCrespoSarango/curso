@@ -1,13 +1,13 @@
-package com.incripcionUsuarios.InscripcionPagos;
+package com.recursos.recursos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class InscripcionPagosApplication {
+public class RecursosApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(InscripcionPagosApplication.class, args);
+		SpringApplication.run(RecursosApplication.class, args);
 	}
 
 }
