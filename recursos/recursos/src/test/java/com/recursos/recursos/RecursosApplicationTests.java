@@ -1,10 +1,10 @@
-package com.registros.registros;
+package com.recursos.recursos;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RegistrosApplicationTests {
+class RecursosApplicationTests {
 
 	@Test
 	void contextLoads() {
