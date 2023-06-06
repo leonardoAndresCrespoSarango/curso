@@ -1,6 +1,7 @@
 package com.registroUsuario.Registro.controller;
 
 import com.registroUsuario.Registro.entity.Usuario;
+import com.registroUsuario.Registro.modelo.Recursos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import com.registroUsuario.Registro.services.usuarioService;
+import com.registroUsuario.Registro.feignclients.RecursosFeignClient;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,6 +29,8 @@ public class usuarioController {
         this.usuService = usuService;
     }
 
+    @Autowired
+    private RecursosFeignClient recursosFeignClient;
     @GetMapping("/todos")
     public List<Usuario> obtenerTodosLosItems() {
 
@@ -64,4 +68,23 @@ public class usuarioController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    ///////////////////
+    @GetMapping("/recursos/{usuarioId}")
+    public ResponseEntity<List<Recursos>> obtenerRecursosUsuario(@PathVariable("usuarioId") int usuarioId) {
+        List<Recursos> recursos = usuService.getRecursos(usuarioId);
+        return ResponseEntity.ok(recursos);
+    }
+
+    @PostMapping("/recursos/{usuarioId}")
+    public ResponseEntity<Recursos> guardarRecursos(@PathVariable("usuarioId") int usuarioId, @RequestBody Recursos recursos) {
+        recursos.setUsuarioId(usuarioId);
+        Recursos nuevoRecursos = recursosFeignClient.save(recursos);
+        return ResponseEntity.ok(nuevoRecursos);
+    }
+
+
+
+
+
 }

@@ -1,20 +1,35 @@
 package com.registroUsuario.Registro.services;
 
+import javax.persistence.TypedQuery;
 import com.registroUsuario.Registro.entity.Usuario;
+import com.registroUsuario.Registro.modelo.Recursos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.registroUsuario.Registro.feignclients.RecursosFeignClient;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.List;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.core.ParameterizedTypeReference;
+
+import org.springframework.web.client.RestTemplate;
+
+
 
 
 @Service
 @Transactional
 public class usuarioService {
+    @Autowired
+    private RestTemplate restTemplate;
+
+
+    @Autowired
+    private RecursosFeignClient recursosFeignClient;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -54,6 +69,27 @@ public class usuarioService {
     public Usuario buscarPorId(int id) {
         return entityManager.find(Usuario.class, id);
     }
+    //////////
+    public List<Recursos> getRecursos(int usuarioId) {
+        String url = "http://localhost:8008/recursos/usuario/" + usuarioId;
+        ResponseEntity<List<Recursos>> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Recursos>>() {}
+        );
+        List<Recursos> recursos = response.getBody();
+        return recursos;
+    }
+
+    public Recursos saveRecursos(int usuarioId, Recursos recursos) {
+        recursos.setUsuarioId(usuarioId);
+        Recursos nuevoRecursos = recursosFeignClient.save(recursos);
+        return nuevoRecursos;
+    }
+
+
+
 
 
 
