@@ -9,6 +9,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.List;
+import org.springframework.http.ResponseEntity;
+
 
 @Service
 @Transactional
@@ -35,6 +37,8 @@ public class usuarioService {
             usuarioExistente.setApellido(usuarioActualizado.getApellido());
             usuarioExistente.setEmail(usuarioActualizado.getEmail());
             usuarioExistente.setTelefono(usuarioActualizado.getTelefono());
+            usuarioExistente.setUsuario(usuarioActualizado.getUsuario());
+            usuarioExistente.setContrasenia(usuarioActualizado.getContrasenia());
             entityManager.merge(usuarioExistente);
         }
         return usuarioExistente;
@@ -50,5 +54,7 @@ public class usuarioService {
     public Usuario buscarPorId(int id) {
         return entityManager.find(Usuario.class, id);
     }
+
+
 
 }

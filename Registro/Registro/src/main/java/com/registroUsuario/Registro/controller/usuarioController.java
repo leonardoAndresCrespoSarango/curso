@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import com.registroUsuario.Registro.services.usuarioService;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/usuario")
@@ -33,8 +34,9 @@ public class usuarioController {
     }
 
     @PostMapping("/crear")
-    public void crearCatalogo(@RequestBody Usuario usuario) {
+    public ResponseEntity<UUID> crearUsuario(@RequestBody Usuario usuario) {
         usuService.insertarCatalogo(usuario);
+        return ResponseEntity.ok(usuario.getUuid());
     }
 
     @PutMapping("/actualizar/{id}")
