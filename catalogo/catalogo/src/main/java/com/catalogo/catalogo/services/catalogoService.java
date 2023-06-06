@@ -38,7 +38,7 @@ public class catalogoService {
         if (catalogoExistente != null) {
             catalogoExistente.setNombre(catalogoActualizado.getNombre());
             catalogoExistente.setDescripccion(catalogoActualizado.getDescripccion());
-            catalogoExistente.setRegistroId(catalogoActualizado.getRegistroId());
+
             entityManager.merge(catalogoExistente);
         }
         return catalogoExistente;

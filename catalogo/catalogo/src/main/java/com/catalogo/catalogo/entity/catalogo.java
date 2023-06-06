@@ -14,7 +14,7 @@ public class catalogo {
 
     private String nombre;
     private String descripccion;
-    private int registroId;
+    // precio.
 
 
     public catalogo() {
@@ -44,12 +44,5 @@ public class catalogo {
     public void setDescripccion(String descripccion) {
         this.descripccion = descripccion;
     }
-
-    public int getRegistroId() {
-        return registroId;
-    }
-
-    public void setRegistroId(int registroId) {
-        this.registroId = registroId;
-    }
 }
+
